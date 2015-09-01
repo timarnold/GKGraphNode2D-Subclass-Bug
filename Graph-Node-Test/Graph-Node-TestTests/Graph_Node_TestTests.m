@@ -1,12 +1,7 @@
-//
-//  Graph_Node_TestTests.m
-//  Graph-Node-TestTests
-//
-//  Created by Tim Camber on 8/31/15.
-//  Copyright © 2015 Friends of The Web. All rights reserved.
-//
+@import XCTest;
 
-#import <XCTest/XCTest.h>
+#import "CheapNode.h"
+#import "ExpensiveNode.h"
 
 @interface Graph_Node_TestTests : XCTestCase
 
@@ -14,26 +9,49 @@
 
 @implementation Graph_Node_TestTests
 
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
+- (void)testNodeCostsUsed {
+    /*
+     This is the graph we are creating:
+     
+     o---o---o    // `secondRowNodes`
+     |       |
+     o---X---o    // `firstRowNodes`
+     
+     where o are `CheapNode` objects, and X are `ExpensiveNode` objects.
+     
+     This test finds a path from the bottom left corner to the top right corner.
+     
+     If the cost methods in the `CheapNode` and `ExpensiveNode` subclasses
+     are used, the route going around X (up, then right, then down)
+     should be used, since the cost of going from X to o is 100, and the cost of
+     going from o to o is 1 (see implementation of these classes).
+     
+     Instead, we see `GKGraph` choosing the "shortest" route in terms of number
+     of nodes, from the bottom left immediately to the right to the bottom
+     right.
+     */
+    NSArray *firstRowNodes = @[
+                               [[CheapNode alloc]     initWithPoint:(vector_float2){0, 0}],
+                               [[ExpensiveNode alloc] initWithPoint:(vector_float2){0, 1}],
+                               [[CheapNode alloc]     initWithPoint:(vector_float2){0, 2}],
+                               ];
+    NSArray *secondRowNodes = @[
+                                [[CheapNode alloc] initWithPoint:(vector_float2){1, 0}],
+                                [[CheapNode alloc] initWithPoint:(vector_float2){1, 1}],
+                                [[CheapNode alloc] initWithPoint:(vector_float2){1, 2}],
+                                ];
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
+    [firstRowNodes.firstObject addConnectionsToNodes:@[ secondRowNodes.firstObject, firstRowNodes[1] ] bidirectional:YES];
+    [firstRowNodes.lastObject  addConnectionsToNodes:@[ firstRowNodes[1],  secondRowNodes.lastObject ] bidirectional:YES];
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+    [secondRowNodes.firstObject addConnectionsToNodes:@[ secondRowNodes[1] ] bidirectional:YES];
+    [secondRowNodes.lastObject  addConnectionsToNodes:@[ secondRowNodes[1] ] bidirectional:YES];
+    
+    GKGraph *graph = [GKGraph graphWithNodes:[firstRowNodes arrayByAddingObjectsFromArray:secondRowNodes]];
+    NSArray *nodes = [graph findPathFromNode:firstRowNodes.firstObject toNode:firstRowNodes.lastObject];
+    
+    XCTAssert(nodes.count == 5, "We should traverse 5 nodes in this configuration");
+    XCTAssertFalse([[nodes valueForKey:@"class"] containsObject:[ExpensiveNode class]], @"Should not contain an ExpensiveNode class in our route");
 }
 
 @end

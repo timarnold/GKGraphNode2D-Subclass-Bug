@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		4A184DB11B94DA6F002778B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A184DB01B94DA6F002778B8 /* main.m */; };
 		4A184DB41B94DA6F002778B8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A184DB31B94DA6F002778B8 /* AppDelegate.m */; };
-		4A184DB71B94DA6F002778B8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A184DB61B94DA6F002778B8 /* ViewController.m */; };
 		4A184DBA1B94DA6F002778B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A184DB81B94DA6F002778B8 /* Main.storyboard */; };
 		4A184DBC1B94DA6F002778B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A184DBB1B94DA6F002778B8 /* Assets.xcassets */; };
 		4A184DBF1B94DA6F002778B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A184DBD1B94DA6F002778B8 /* LaunchScreen.storyboard */; };
 		4A184DCA1B94DA6F002778B8 /* Graph_Node_TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A184DC91B94DA6F002778B8 /* Graph_Node_TestTests.m */; };
-		4A184DD61B94DA88002778B8 /* CustomNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A184DD51B94DA88002778B8 /* CustomNode.m */; };
+		4A184DD91B94E63B002778B8 /* ExpensiveNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A184DD81B94E63B002778B8 /* ExpensiveNode.m */; };
+		4A184DDC1B94E645002778B8 /* CheapNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A184DDB1B94E645002778B8 /* CheapNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,8 +32,6 @@
 		4A184DB01B94DA6F002778B8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4A184DB21B94DA6F002778B8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4A184DB31B94DA6F002778B8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4A184DB51B94DA6F002778B8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4A184DB61B94DA6F002778B8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4A184DB91B94DA6F002778B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A184DBB1B94DA6F002778B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A184DBE1B94DA6F002778B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -41,8 +39,10 @@
 		4A184DC51B94DA6F002778B8 /* Graph-Node-TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Graph-Node-TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A184DC91B94DA6F002778B8 /* Graph_Node_TestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Graph_Node_TestTests.m; sourceTree = "<group>"; };
 		4A184DCB1B94DA6F002778B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A184DD41B94DA88002778B8 /* CustomNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomNode.h; path = ../CustomNode.h; sourceTree = "<group>"; };
-		4A184DD51B94DA88002778B8 /* CustomNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomNode.m; path = ../CustomNode.m; sourceTree = "<group>"; };
+		4A184DD71B94E63B002778B8 /* ExpensiveNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpensiveNode.h; sourceTree = "<group>"; };
+		4A184DD81B94E63B002778B8 /* ExpensiveNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpensiveNode.m; sourceTree = "<group>"; };
+		4A184DDA1B94E645002778B8 /* CheapNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheapNode.h; path = ../CheapNode.h; sourceTree = "<group>"; };
+		4A184DDB1B94E645002778B8 /* CheapNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheapNode.m; path = ../CheapNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,10 +86,10 @@
 			children = (
 				4A184DB21B94DA6F002778B8 /* AppDelegate.h */,
 				4A184DB31B94DA6F002778B8 /* AppDelegate.m */,
-				4A184DD41B94DA88002778B8 /* CustomNode.h */,
-				4A184DD51B94DA88002778B8 /* CustomNode.m */,
-				4A184DB51B94DA6F002778B8 /* ViewController.h */,
-				4A184DB61B94DA6F002778B8 /* ViewController.m */,
+				4A184DD71B94E63B002778B8 /* ExpensiveNode.h */,
+				4A184DD81B94E63B002778B8 /* ExpensiveNode.m */,
+				4A184DDA1B94E645002778B8 /* CheapNode.h */,
+				4A184DDB1B94E645002778B8 /* CheapNode.m */,
 				4A184DB81B94DA6F002778B8 /* Main.storyboard */,
 				4A184DBB1B94DA6F002778B8 /* Assets.xcassets */,
 				4A184DBD1B94DA6F002778B8 /* LaunchScreen.storyboard */,
@@ -216,10 +216,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A184DD61B94DA88002778B8 /* CustomNode.m in Sources */,
-				4A184DB71B94DA6F002778B8 /* ViewController.m in Sources */,
+				4A184DD91B94E63B002778B8 /* ExpensiveNode.m in Sources */,
 				4A184DB41B94DA6F002778B8 /* AppDelegate.m in Sources */,
 				4A184DB11B94DA6F002778B8 /* main.m in Sources */,
+				4A184DDC1B94E645002778B8 /* CheapNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +408,7 @@
 				4A184DD01B94DA6F002778B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4A184DD11B94DA6F002778B8 /* Build configuration list for PBXNativeTarget "Graph-Node-TestTests" */ = {
 			isa = XCConfigurationList;
@@ -416,6 +417,7 @@
 				4A184DD31B94DA6F002778B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
