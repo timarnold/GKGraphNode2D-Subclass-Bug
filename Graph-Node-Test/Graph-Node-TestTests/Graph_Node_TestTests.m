@@ -13,45 +13,47 @@
     /*
      This is the graph we are creating:
      
-     o---o---o    // `secondRowNodes`
+     A---B---C
      |       |
-     o---X---o    // `firstRowNodes`
+     F---E---D
      
-     where o are `CheapNode` objects, and X are `ExpensiveNode` objects.
+     where all of the nodes are `CheapNode` objects, except 'B', which is an
+     `ExpensiveNode` object.
      
-     This test finds a path from the bottom left corner to the top right corner.
+     This test finds a path from node A to node C.
      
      If the cost methods in the `CheapNode` and `ExpensiveNode` subclasses
-     are used, the route going around X (up, then right, then down)
-     should be used, since the cost of going from X to o is 100, and the cost of
-     going from o to o is 1 (see implementation of these classes).
+     are used, the route going from A to C around B (down, then right, then up)
+     should be used, since the cost of going from B to C is 100, and the cost of
+     going from any other node to any other node is 1 
+     (see implementation of these classes).
      
      Instead, we see `GKGraph` choosing the "shortest" route in terms of number
-     of nodes, from the bottom left immediately to the right to the bottom
-     right.
+     of nodes, from the top left immediately to the right to the top right.
      */
-    NSArray *firstRowNodes = @[
-                               [[CheapNode alloc]     initWithPoint:(vector_float2){0, 0}],
-                               [[ExpensiveNode alloc] initWithPoint:(vector_float2){0, 1}],
-                               [[CheapNode alloc]     initWithPoint:(vector_float2){0, 2}],
-                               ];
-    NSArray *secondRowNodes = @[
-                                [[CheapNode alloc] initWithPoint:(vector_float2){1, 0}],
-                                [[CheapNode alloc] initWithPoint:(vector_float2){1, 1}],
-                                [[CheapNode alloc] initWithPoint:(vector_float2){1, 2}],
-                                ];
-
-    [firstRowNodes.firstObject addConnectionsToNodes:@[ secondRowNodes.firstObject, firstRowNodes[1] ] bidirectional:YES];
-    [firstRowNodes.lastObject  addConnectionsToNodes:@[ firstRowNodes[1],  secondRowNodes.lastObject ] bidirectional:YES];
-
-    [secondRowNodes.firstObject addConnectionsToNodes:@[ secondRowNodes[1] ] bidirectional:YES];
-    [secondRowNodes.lastObject  addConnectionsToNodes:@[ secondRowNodes[1] ] bidirectional:YES];
     
-    GKGraph *graph = [GKGraph graphWithNodes:[firstRowNodes arrayByAddingObjectsFromArray:secondRowNodes]];
-    NSArray *nodes = [graph findPathFromNode:firstRowNodes.firstObject toNode:firstRowNodes.lastObject];
+    CheapNode     *nodeA = [[CheapNode alloc]     initWithPoint:(vector_float2){0, 0}];
+    ExpensiveNode *nodeB = [[ExpensiveNode alloc] initWithPoint:(vector_float2){1, 0}];
+    CheapNode     *nodeC = [[CheapNode alloc]     initWithPoint:(vector_float2){2, 0}];
+    CheapNode     *nodeD = [[CheapNode alloc]     initWithPoint:(vector_float2){2, 1}];
+    CheapNode     *nodeE = [[CheapNode alloc]     initWithPoint:(vector_float2){1, 1}];
+    CheapNode     *nodeF = [[CheapNode alloc]     initWithPoint:(vector_float2){0, 1}];
     
-    XCTAssert(nodes.count == 5, "We should traverse 5 nodes in this configuration");
-    XCTAssertFalse([[nodes valueForKey:@"class"] containsObject:[ExpensiveNode class]], @"Should not contain an ExpensiveNode class in our route");
+    [nodeA addConnectionsToNodes:@[ nodeB, nodeF ] bidirectional:YES];
+    [nodeC addConnectionsToNodes:@[ nodeB, nodeD ] bidirectional:YES];
+    [nodeE addConnectionsToNodes:@[ nodeF, nodeD ] bidirectional:YES];
+
+    NSArray *allNodes = @[ nodeA, nodeB, nodeC, nodeD, nodeE, nodeF ];
+    
+    GKGraph *graph = [GKGraph graphWithNodes:allNodes];
+    NSArray *nodes = [graph findPathFromNode:nodeA toNode:nodeC];
+    
+    NSArray *expectedPath   = @[ nodeA, nodeF, nodeE, nodeD, nodeC ];
+    NSArray *prohibitedPath = @[ nodeA, nodeB, nodeC ];
+    
+    XCTAssert([nodes isEqualToArray:expectedPath], @"");
+    XCTAssertFalse([nodes isEqualToArray:prohibitedPath], @"");
+
 }
 
 @end
