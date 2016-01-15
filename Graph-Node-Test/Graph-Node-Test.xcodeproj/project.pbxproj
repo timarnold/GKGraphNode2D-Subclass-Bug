@@ -13,8 +13,7 @@
 		4A184DBC1B94DA6F002778B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A184DBB1B94DA6F002778B8 /* Assets.xcassets */; };
 		4A184DBF1B94DA6F002778B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A184DBD1B94DA6F002778B8 /* LaunchScreen.storyboard */; };
 		4A184DCA1B94DA6F002778B8 /* Graph_Node_TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A184DC91B94DA6F002778B8 /* Graph_Node_TestTests.m */; };
-		4A184DD91B94E63B002778B8 /* ExpensiveNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A184DD81B94E63B002778B8 /* ExpensiveNode.m */; };
-		4A184DDC1B94E645002778B8 /* CheapNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A184DDB1B94E645002778B8 /* CheapNode.m */; };
+		4A1DEA881C484F8100348D26 /* GeometricNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1DEA871C484F8100348D26 /* GeometricNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,10 +38,8 @@
 		4A184DC51B94DA6F002778B8 /* Graph-Node-TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Graph-Node-TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A184DC91B94DA6F002778B8 /* Graph_Node_TestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Graph_Node_TestTests.m; sourceTree = "<group>"; };
 		4A184DCB1B94DA6F002778B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A184DD71B94E63B002778B8 /* ExpensiveNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpensiveNode.h; sourceTree = "<group>"; };
-		4A184DD81B94E63B002778B8 /* ExpensiveNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpensiveNode.m; sourceTree = "<group>"; };
-		4A184DDA1B94E645002778B8 /* CheapNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheapNode.h; path = ../CheapNode.h; sourceTree = "<group>"; };
-		4A184DDB1B94E645002778B8 /* CheapNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheapNode.m; path = ../CheapNode.m; sourceTree = "<group>"; };
+		4A1DEA861C484F8100348D26 /* GeometricNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeometricNode.h; sourceTree = "<group>"; };
+		4A1DEA871C484F8100348D26 /* GeometricNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeometricNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,10 +83,8 @@
 			children = (
 				4A184DB21B94DA6F002778B8 /* AppDelegate.h */,
 				4A184DB31B94DA6F002778B8 /* AppDelegate.m */,
-				4A184DD71B94E63B002778B8 /* ExpensiveNode.h */,
-				4A184DD81B94E63B002778B8 /* ExpensiveNode.m */,
-				4A184DDA1B94E645002778B8 /* CheapNode.h */,
-				4A184DDB1B94E645002778B8 /* CheapNode.m */,
+				4A1DEA861C484F8100348D26 /* GeometricNode.h */,
+				4A1DEA871C484F8100348D26 /* GeometricNode.m */,
 				4A184DB81B94DA6F002778B8 /* Main.storyboard */,
 				4A184DBB1B94DA6F002778B8 /* Assets.xcassets */,
 				4A184DBD1B94DA6F002778B8 /* LaunchScreen.storyboard */,
@@ -216,10 +211,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A184DD91B94E63B002778B8 /* ExpensiveNode.m in Sources */,
+				4A1DEA881C484F8100348D26 /* GeometricNode.m in Sources */,
 				4A184DB41B94DA6F002778B8 /* AppDelegate.m in Sources */,
 				4A184DB11B94DA6F002778B8 /* main.m in Sources */,
-				4A184DDC1B94E645002778B8 /* CheapNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
