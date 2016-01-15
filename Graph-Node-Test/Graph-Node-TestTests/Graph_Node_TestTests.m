@@ -17,7 +17,7 @@
      This is the graph we are creating:
      
      A---B---C
-     | X   X |
+     | X | X |
      F---E---D
      
      where all of the nodes are `GeometricNode` objects.
@@ -36,7 +36,7 @@
     
     [nodeA addConnectionsToNodes:@[ nodeB, nodeF, nodeE ] bidirectional:YES];
     [nodeC addConnectionsToNodes:@[ nodeB, nodeD, nodeE ] bidirectional:YES];
-    [nodeE addConnectionsToNodes:@[ nodeF, nodeD ] bidirectional:YES];
+    [nodeE addConnectionsToNodes:@[ nodeF, nodeD, nodeB ] bidirectional:YES];
     [nodeB addConnectionsToNodes:@[ nodeF, nodeD ] bidirectional:YES];
     
     self.nodes = @[ nodeA, nodeB, nodeC, nodeD, nodeE, nodeF ];
@@ -46,7 +46,7 @@
 - (void)testNodeCosts {
     /*
      A---B---C
-     | X   X |
+     | X | X |
      F---E---D
      
      We would expect, for example, the path from A to C to be A-B-C, at a cost of
@@ -67,8 +67,8 @@
     XCTAssertEqualWithAccuracy([nodeA costToNode:nodeB], 1, 0.001, @"Cost from A-B should be 1");
     XCTAssertEqualWithAccuracy([nodeB costToNode:nodeC], 1, 0.001, @"Cost from B-C should be 1");
     
-    XCTAssertEqualWithAccuracy([nodeA costToNode:nodeE], 1.414, 0.001, @"Cost from A-E should be sqrt(2) ~ 1.414");
-    XCTAssertEqualWithAccuracy([nodeE costToNode:nodeC], 1.414, 0.001, @"Cost from E-C should be sqrt(2) ~ 1.414");
+    XCTAssertEqualWithAccuracy([nodeA costToNode:nodeE], sqrt(2), 0.001, @"Cost from A-E should be sqrt(2) ~ 1.414");
+    XCTAssertEqualWithAccuracy([nodeE costToNode:nodeC], sqrt(2), 0.001, @"Cost from E-C should be sqrt(2) ~ 1.414");
     
     // The actual path calculated by GKGraph, and the expected and actual (incorrect) paths
     NSArray <GeometricNode *>* actualPath    = [self.graph findPathFromNode:nodeA toNode:nodeC];
@@ -88,8 +88,8 @@
 
     XCTAssert([actualPath isEqualToArray:expectedPath], @"Actual found path should be equal to A-B-C");
     XCTAssert(![actualPath isEqualToArray:incorrectPath], @"Actual found path should not be equal to A-E-C");
-    XCTAssert(totalIncorrectCost > totalActualCost, @"Incorrect path cost should be greater than the optimal path");
-    XCTAssert(totalActualCost <= totalExpectedCost, @"Actual found path cost should be less than an incorrect path");
+    XCTAssertGreaterThan(totalIncorrectCost, totalActualCost);
+    XCTAssertLessThanOrEqual(totalActualCost, totalExpectedCost);
 }
 
 @end
