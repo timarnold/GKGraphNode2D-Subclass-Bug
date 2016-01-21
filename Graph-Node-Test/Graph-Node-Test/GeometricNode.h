@@ -4,6 +4,4 @@
 
 @interface GeometricNode : GKGraphNode2D
 
-- (CGFloat)geometricDistanceToNode:(GeometricNode *)node;
-
 @end
